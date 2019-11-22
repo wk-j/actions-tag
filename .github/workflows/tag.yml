@@ -13,7 +13,7 @@ jobs:
 
       - name: Get the version
         id: get-version
-        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
 
       - name: Show version
         run: echo Version number is ${{ steps.get-version.outputs.VERSION }}
