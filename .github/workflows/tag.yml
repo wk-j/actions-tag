@@ -1,0 +1,19 @@
+name: Build Tag
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Get the version
+        id: get-version
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
+      - name: Show version
+        run: echo Version number is ${{ steps.get-version.outputs.VERSION }}
